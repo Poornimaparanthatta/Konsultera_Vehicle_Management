@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title" style="">Add Vehicle Details</h4><br>
+                    <form class="forms-sample" method="post" action="{% url 'saveDetails' %}">
+                      {% csrf_token %}
+                      <div class="form-group">
+                        <label for="exampleInputName1">Vehicle Number</label>
+                        {% if perms.vehicle_app.add_vehicleDB %}
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Vehicle Number" name="vnumber">
+                        {% else %}
+                        <br><input type="text" placeholder="No permission" name="myField" id="myField" disabled>
+                        {% endif %}
+
+                      </div>
+                      <div class="form-group">
+                        <label>Vehicle Type</label>
+                        {% if perms.vehicle_app.add_vehicleDB %}
+                        <select name="vtype" class="form-control">
+                          <option>Select</option>
+                          <option>Two Wheeler</option>
+                          <option>Three Wheeler</option>
+                          <option>Four Wheeler</option>
+                        </select>
+                        {% else %}
+                        <br><input type="text" placeholder="No permission" name="myField" id="myField" disabled>
+                        {% endif %}
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputCity1">Vehicle Model</label>
+                                                {% if perms.vehicle_app.add_vehicleDB %}
+                        <input type="text" class="form-control" id="exampleInputCity1" placeholder="Vehicle Model" name="vmodel">
+                        {% else %}
+                        <br><input type="text" placeholder="No permission" name="myField" id="myField" disabled>
+                        {% endif %}
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleTextarea1">Vehicle Description</label>
+                                                                        {% if perms.vehicle_app.add_vehicleDB %}
+                        <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Vehicle Description" name="description"></textarea>
+                      {% else %}
+                        <br><input type="text" placeholder="No permission" name="myField" id="myField" disabled>
+                        {% endif %}
+                      </div>
+                                                                      {% if perms.vehicle_app.add_vehicleDB %}
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      {% else %}
+                      <button class="btn btn-primary mr-2" disabled>submit</button>
+                      {% endif %}
+<!--                      <button class="btn btn-dark">Cancel</button>-->
+                    </form>
+                  </div>
+                </div>
+</body>
+</html>
+{% endblock %}

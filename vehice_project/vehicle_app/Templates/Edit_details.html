@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title" style="">Add Vehicle Details</h4><br>
+                    <form class="forms-sample" method="post" action="{% url 'updateDetails' dataid=data.id %}">
+                      {% csrf_token %}
+                      <div class="form-group">
+                        <label for="exampleInputName1">Vehicle Number</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Vehicle Number" name="vnumber" value="{{data.Vehicle_Number}}">
+                      </div>
+                      <div class="form-group">
+                        <label>Vehicle Type</label>
+                        <select name="vtype" class="form-control">
+                          <option>Select</option>
+                          <option>Two Wheeler</option>
+                          <option>Three Wheeler</option>
+                          <option>Four Wheeler</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputCity1">Vehicle Model</label>
+                        <input type="text" class="form-control" id="exampleInputCity1" placeholder="Vehicle Model" name="vmodel" value="{{data.Vehicle_Model}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleTextarea1">Vehicle Description</label>
+                        <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Vehicle Description" name="description">{{data.Description}}</textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary mr-2">Update</button>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+</body>
+</html>
+{% endblock %}
